@@ -1,0 +1,64 @@
+doctype html
+html(lang='en')
+    head
+        title Portland Historical Tour Reservations
+        meta(charset='utf-8')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="/project.css")
+        link(href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css')
+    body
+        div#wrapper
+        header
+            img(src="images/portlandhistoricaltoursheader.png" alt="Portland Historical Tours" width="920" height="290")
+        nav
+            ul
+                li
+                    a(href="index.html") Home
+                li
+                    a(href="about.html") About
+                li
+                    a(href="tours.html") Tours
+                li
+                    a(href="/reservations") Reservations
+                li
+                    a(href="contact.html") Contact
+        main
+            h1  Book a Reservation
+            div#source Required fields are marked with an asterisk (*).
+            div#reservations
+                form(method="post" action="/confirmation")
+                    label(for="tour") *Tour:
+                    select(size="1" name="tour" id="tour")
+                        option Choose Your Tour
+                        each tour in tours
+                            option(value=tour.tourID) #{tour.title + " - $" + tour.price}
+                    //Spam Mitigation Honeypot field
+                    input(type="text" name="honeypot" id="honeypot" value="" alt="if you fill this field out then your email will not be sent")
+                    label(for="myfname") *First Name:
+                    input(type="text" name="myfname" id="myfname" required)
+                    label(for="mylname") *Last Name:
+                    input(type="text" name="mylname" id="mylname" required)
+                    label(for="myemail") Email:
+                    input(type="email" name="myemail" id="myemail" required)
+                    label(for="myphone") Phone:
+                    input(type="tel" name="myphone" id="myphone" required)
+                    label(for="mydate") *Tour Date:
+                    input(type="date" name="mydate" id="mydate" required)
+                    label(for="mygroup") *Total Participants
+                    input(type="number" name="mygroup" id="mygroup" required)
+                    label(for="mycomments") *Do you have any food or drink sensitivities?
+                    textarea(name="mycomments" id="mycomments" rows="2" cols="20" required)
+                    input(id="mysubmit" type="submit" value="Submit")
+        footer
+            div#footernav
+                a(href="index.html") Home &nbsp;
+                a(href="about.html") About &nbsp;
+                a(href="tours.html") Tours &nbsp;
+                a(href="/reservations") Reservations &nbsp;
+                a(href="contact.html") Contact &nbsp;
+            p
+                Copyright &copy; Portland Historical Tours<br>
+                a(href="mailto:hello@portlandhistoricaltours.com") hello@portlandhistoricaltours.com
+
+
+
